@@ -1,12 +1,18 @@
 <h1>Posts</h1>
 
 {% for p in posts %}
-    <!-- ❌ XSS vulnerability -->
+    <!-- 🔴 FLAW 2: XSS -->
     <p>{{ p.content|safe }}</p>
+
     <a href="/delete/{{p.id}}">Delete</a>
 {% endfor %}
 
 <form method="POST" action="/add/">
+    <!-- ❌ CSRF token removed -->
+
+    <!-- ✅ FIX -->
+    <!-- {% csrf_token %} -->
+
     <input name="content">
     <button type="submit">Post</button>
 </form>

@@ -19,11 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-75w3eiosu@r8)#cq6t(yy6l((197zia+hwazq=uge#h*#q*69x'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -121,4 +117,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SECRET_KEY = '123456'
+# 🔴 FLAW 5: Security Misconfiguration
+
+# ❌ Hardcoded weak secret key
+SECRET_KEY = "123456"
+
+# ❌ Debug mode enabled in production
+DEBUG = True
+
+
+# ✅ FIX (commented):
+# import os
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+# DEBUG = False
