@@ -1,0 +1,12 @@
+<h1>Posts</h1>
+
+{% for p in posts %}
+    <!-- ❌ XSS vulnerability -->
+    <p>{{ p.content|safe }}</p>
+    <a href="/delete/{{p.id}}">Delete</a>
+{% endfor %}
+
+<form method="POST" action="/add/">
+    <input name="content">
+    <button type="submit">Post</button>
+</form>
